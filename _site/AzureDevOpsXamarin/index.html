@@ -5,30 +5,31 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
 <head>
 <meta charset="utf-8">
-<title>Tag Archive &#8211; Blog - Robert Horvath</title>
-<meta name="description" content="An archive of posts sorted by tag.">
-
+<title>Azure DevOps - Xamarin.iOS buildtool versions &#8211; Blog - Robert Horvath</title>
+<meta name="description" content="">
+<meta name="keywords" content="Azure Devops">
 
 <!-- Twitter Cards -->
-<meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://localhost:4000/images/">
-<meta name="twitter:title" content="Tag Archive">
-<meta name="twitter:description" content="An archive of posts sorted by tag.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://localhost:4000/images/abstract-5.jpg">
+
+<meta name="twitter:title" content="Azure DevOps - Xamarin.iOS buildtool versions">
+<meta name="twitter:description" content="">
 <meta name="twitter:creator" content="@naptic__">
 
 <!-- Open Graph -->
 <meta property="og:locale" content="en_US">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Tag Archive">
-<meta property="og:description" content="An archive of posts sorted by tag.">
-<meta property="og:url" content="http://localhost:4000/tags/">
+<meta property="og:title" content="Azure DevOps - Xamarin.iOS buildtool versions">
+<meta property="og:description" content="">
+<meta property="og:url" content="http://localhost:4000/AzureDevOpsXamarin/">
 <meta property="og:site_name" content="Blog - Robert Horvath">
 
 
 
 
 
-<link rel="canonical" href="http://localhost:4000/tags/">
+<link rel="canonical" href="http://localhost:4000/AzureDevOpsXamarin/">
 <link href="http://localhost:4000/feed.xml" type="application/atom+xml" rel="alternate" title="Blog - Robert Horvath Feed">
 
 <!-- http://t.co/dKP3o1e -->
@@ -64,7 +65,7 @@
 
 </head>
 
-<body id="post-index" >
+<body id="post" class="feature">
 
 <!--[if lt IE 9]><div class="upgrade"><strong><a href="http://whatbrowser.org/">Your browser is quite old!</strong> Why not upgrade to a different browser to better enjoy this site?</a></div><![endif]-->
 <nav id="dl-menu" class="dl-menuwrapper" role="navigation">
@@ -113,39 +114,54 @@
 </nav><!-- /.dl-menuwrapper -->
 
 
+
 <div class="entry-header">
   
-  
-  <div class="header-title">
-    <div class="header-title-wrap">
-      <h1>Blog - Robert Horvath</h1>
-      <h2>Tag Archive</h2>
-    </div><!-- /.header-title-wrap -->
-  </div><!-- /.header-title -->
+  <div class="entry-image">
+    <img src="http://localhost:4000/images/abstract-5.jpg" alt="Azure DevOps - Xamarin.iOS buildtool versions">
+  </div><!-- /.entry-image -->
 </div><!-- /.entry-header -->
 
+
 <div id="main" role="main">
-  
+  <article class="hentry">
+    <header class="header-title">
+      <div class="header-title-wrap">
+        
+          <h1 class="entry-title"><a href="http://localhost:4000/AzureDevOpsXamarin/" rel="bookmark" title="Azure DevOps - Xamarin.iOS buildtool versions">Azure DevOps - Xamarin.iOS buildtool versions</a></h1>
+        
+        <h2><span class="entry-date date published"><time datetime="2019-06-27T00:00:00+00:00">June 27, 2019</time></span></h2>
+        
+        <p class="entry-reading-time">
+          <i class="fa fa-clock-o"></i>
+          
+Reading time ~1 minute
+        </p><!-- /.entry-reading-time -->
+        
+      </div><!-- /.header-title-wrap -->
+    </header>
+    <div class="entry-content">
+      <p>Xamarin.iOS task handles buildtool version a bit different, than other Azure DevOps Task.<br />
+Basically, there’s a shells script on each macOS hosted VM, with which one can select the build tool vesion.</p>
 
+<p>This example sets the Xamarin SDK Version (mono version resp.) to a given version:</p>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">steps</span><span class="pi">:</span>
+<span class="pi">-</span> <span class="na">script</span><span class="pi">:</span> <span class="s">sudo $AGENT_HOMEDIRECTORY/scripts/select-xamarin-sdk.sh 5_18_1</span> 
+  <span class="na">displayName</span><span class="pi">:</span> <span class="s1">'</span><span class="s">Select</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">Xamarin</span><span class="nv"> </span><span class="s">SDK</span><span class="nv"> </span><span class="s">version'</span>
+</code></pre></div></div>
 
-<ul class="entry-meta inline-list">
-  
+<p>For more information visit <a href="https://go.microsoft.com/fwlink/?linkid=871629">https://go.microsoft.com/fwlink/?linkid=871629</a></p>
+
+      <footer class="entry-meta">
+        <span class="entry-tags"><a href="http://localhost:4000/tags/#Azure Devops" title="Pages tagged Azure Devops" class="tag"><span class="term">Azure Devops</span></a></span>
+        <span>Updated on <span class="entry-date date updated"><time datetime="2019-06-27">June 27, 2019</time></span></span>
+        <span class="author vcard"><span class="fn">Robert Horvath</span></span>
+        
+      </footer>
+    </div><!-- /.entry-content -->
     
-  	<li><a href="#Azure Devops" class="tag"><span class="term">Azure Devops</span> <span class="count">1</span></a></li>
-  
-</ul>
-
-
-  
-	<article>
-	<h2 id="Azure Devops" class="tag-heading">Azure Devops</h2>
-		<ul>
     
-      <li class="entry-title"><a href="http://localhost:4000/AzureDevOpsXamarin/" title="Azure DevOps - Xamarin.iOS buildtool versions">Azure DevOps - Xamarin.iOS buildtool versions</a></li>
-    
-		</ul>
-	</article><!-- /.hentry -->
-
+  </article>
 </div><!-- /#main -->
 
 <div class="footer-wrapper">
@@ -160,7 +176,7 @@
 
 
 
-          
+	        
 
 </body>
 </html>
