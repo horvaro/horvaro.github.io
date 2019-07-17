@@ -5,31 +5,31 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
 <head>
 <meta charset="utf-8">
-<title>Latest Posts &#8211; Blog - Robert Horvath</title>
-<meta name="description" content="Describe this nonsense.">
-<meta name="keywords" content="Jekyll, theme, themes, responsive, blog, modern">
+<title>Python - Headless Browser (Mechanize) &#8211; Blog - Robert Horvath</title>
+<meta name="description" content="">
+<meta name="keywords" content="Python">
 
 <!-- Twitter Cards -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://localhost:4000/images/abstract-1.jpg">
+<meta name="twitter:image" content="http://localhost:4000/images/abstract-2.jpg">
 
-<meta name="twitter:title" content="Latest Posts">
-<meta name="twitter:description" content="Describe this nonsense.">
+<meta name="twitter:title" content="Python - Headless Browser (Mechanize)">
+<meta name="twitter:description" content="">
 <meta name="twitter:creator" content="@naptic__">
 
 <!-- Open Graph -->
 <meta property="og:locale" content="en_US">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Latest Posts">
-<meta property="og:description" content="Describe this nonsense.">
-<meta property="og:url" content="http://localhost:4000/">
+<meta property="og:title" content="Python - Headless Browser (Mechanize)">
+<meta property="og:description" content="">
+<meta property="og:url" content="http://localhost:4000/PythonHeadlessBrowserMechanize/">
 <meta property="og:site_name" content="Blog - Robert Horvath">
 
 
 
 
 
-<link rel="canonical" href="http://localhost:4000/">
+<link rel="canonical" href="http://localhost:4000/PythonHeadlessBrowserMechanize/">
 <link href="http://localhost:4000/feed.xml" type="application/atom+xml" rel="alternate" title="Blog - Robert Horvath Feed">
 
 <!-- http://t.co/dKP3o1e -->
@@ -65,7 +65,7 @@
 
 </head>
 
-<body id="post-index" class="feature">
+<body id="post" class="feature">
 
 <!--[if lt IE 9]><div class="upgrade"><strong><a href="http://whatbrowser.org/">Your browser is quite old!</strong> Why not upgrade to a different browser to better enjoy this site?</a></div><![endif]-->
 <nav id="dl-menu" class="dl-menuwrapper" role="navigation">
@@ -114,46 +114,34 @@
 </nav><!-- /.dl-menuwrapper -->
 
 
+
 <div class="entry-header">
-  <div class="image-credit">Image source: <a href="http://www.dargadgetz.com/ios-7-abstract-wallpaper-pack-for-iphone-5-and-ipod-touch-retina/">dargadgetz</a></div><!-- /.image-credit -->
   
-    <div class="entry-image">
-      <img src="http://localhost:4000/images/abstract-1.jpg" alt="Latest Posts">
-    </div><!-- /.entry-image -->
-  
-  <div class="header-title">
-    <div class="header-title-wrap">
-      <h1>Blog - Robert Horvath</h1>
-      <h2>Latest Posts</h2>
-    </div><!-- /.header-title-wrap -->
-  </div><!-- /.header-title -->
+  <div class="entry-image">
+    <img src="http://localhost:4000/images/abstract-2.jpg" alt="Python - Headless Browser (Mechanize)">
+  </div><!-- /.entry-image -->
 </div><!-- /.entry-header -->
 
+
 <div id="main" role="main">
-  
-<article class="hentry">
-  <header>
-    
-      <div class="entry-image-index">
-        <a href="http://localhost:4000/PythonHeadlessBrowserMechanize/" title="Python - Headless Browser (Mechanize)"><img src="http://localhost:4000/images/abstract-2.jpg" alt="Python - Headless Browser (Mechanize)"></a>
-      </div><!-- /.entry-image -->
-    
-    <div class="entry-meta">
-      <span class="entry-date date published updated"><time datetime="2019-07-17T00:00:00+00:00"><a href="http://localhost:4000/PythonHeadlessBrowserMechanize/">July 17, 2019</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Robert Horvath">Robert Horvath</a></span></span>
-      
-      <span class="entry-reading-time">
-        <i class="fa fa-clock-o"></i>
+  <article class="hentry">
+    <header class="header-title">
+      <div class="header-title-wrap">
         
+          <h1 class="entry-title"><a href="http://localhost:4000/PythonHeadlessBrowserMechanize/" rel="bookmark" title="Python - Headless Browser (Mechanize)">Python - Headless Browser (Mechanize)</a></h1>
+        
+        <h2><span class="entry-date date published"><time datetime="2019-07-17T00:00:00+00:00">July 17, 2019</time></span></h2>
+        
+        <p class="entry-reading-time">
+          <i class="fa fa-clock-o"></i>
+          
 Reading time ~1 minute
-      </span><!-- /.entry-reading-time -->
-      
-    </div><!-- /.entry-meta -->
-    
-      <h1 class="entry-title"><a href="http://localhost:4000/PythonHeadlessBrowserMechanize/" rel="bookmark" title="Python - Headless Browser (Mechanize)" itemprop="url">Python - Headless Browser (Mechanize)</a></h1>
-    
-  </header>
-  <div class="entry-content">
-    <p>Sometimes you need to automatically fill HTML forms in an automated pipeline (e.g. Installation of application, etc.).
+        </p><!-- /.entry-reading-time -->
+        
+      </div><!-- /.header-title-wrap -->
+    </header>
+    <div class="entry-content">
+      <p>Sometimes you need to automatically fill HTML forms in an automated pipeline (e.g. Installation of application, etc.).
 One could use UI-Test automating frameworks like Selenium, but all of those need some kind of running Browser with which they can interact with.
 This apprioach does not work on servers, where only a text-based interface is available.</p>
 
@@ -202,47 +190,29 @@ Please keep in mind, that mechanize can not run/parse javascript, which means th
 This limits us to only selecting <code class="highlighter-rouge">&lt;form&gt;</code> with a name attribute.<br />
 Because of this limitation, I created a simple function at the beginning of the sample script, with which one can select <code class="highlighter-rouge">&lt;form&gt;</code> based on their <code class="highlighter-rouge">id</code> attribute.</p>
 
-  </div><!-- /.entry-content -->
-</article><!-- /.hentry -->
-
-<article class="hentry">
-  <header>
-    
-      <div class="entry-image-index">
-        <a href="http://localhost:4000/AzureDevOpsXamarin/" title="Azure DevOps - Xamarin.iOS buildtool versions"><img src="http://localhost:4000/images/abstract-5.jpg" alt="Azure DevOps - Xamarin.iOS buildtool versions"></a>
-      </div><!-- /.entry-image -->
-    
-    <div class="entry-meta">
-      <span class="entry-date date published updated"><time datetime="2019-06-27T00:00:00+00:00"><a href="http://localhost:4000/AzureDevOpsXamarin/">June 27, 2019</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Robert Horvath">Robert Horvath</a></span></span>
-      
-      <span class="entry-reading-time">
-        <i class="fa fa-clock-o"></i>
+      <footer class="entry-meta">
+        <span class="entry-tags"><a href="http://localhost:4000/tags/#Python" title="Pages tagged Python" class="tag"><span class="term">Python</span></a></span>
+        <span>Updated on <span class="entry-date date updated"><time datetime="2019-07-17">July 17, 2019</time></span></span>
+        <span class="author vcard"><span class="fn">Robert Horvath</span></span>
         
-Reading time ~1 minute
-      </span><!-- /.entry-reading-time -->
-      
-    </div><!-- /.entry-meta -->
+      </footer>
+    </div><!-- /.entry-content -->
     
-      <h1 class="entry-title"><a href="http://localhost:4000/AzureDevOpsXamarin/" rel="bookmark" title="Azure DevOps - Xamarin.iOS buildtool versions" itemprop="url">Azure DevOps - Xamarin.iOS buildtool versions</a></h1>
+    <div class="read-more">
+  
+    <div class="read-more-header">
+      <a href="http://localhost:4000/AzureDevOpsXamarin/" class="read-more-btn">Read More</a>
+    </div><!-- /.read-more-header -->
+    <div class="read-more-content">
+      <h3><a href="http://localhost:4000/AzureDevOpsXamarin/" title="Azure DevOps - Xamarin.iOS buildtool versions">Azure DevOps - Xamarin.iOS buildtool versions</a></h3>
+      <p> <a href="http://localhost:4000/AzureDevOpsXamarin/">Continue reading</a></p>
+    </div><!-- /.read-more-content -->
+  
+  <div class="read-more-list">
     
-  </header>
-  <div class="entry-content">
-    <p>Xamarin.iOS task handles buildtool version a bit different, than other Azure DevOps Task.<br />
-Basically, there’s a shells script on each macOS hosted VM, with which one can select the build tool vesion.</p>
-
-<p>This example sets the Xamarin SDK Version (mono version resp.) to a given version:</p>
-<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">steps</span><span class="pi">:</span>
-<span class="pi">-</span> <span class="na">script</span><span class="pi">:</span> <span class="s">sudo $AGENT_HOMEDIRECTORY/scripts/select-xamarin-sdk.sh 5_18_1</span> 
-  <span class="na">displayName</span><span class="pi">:</span> <span class="s1">'</span><span class="s">Select</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">Xamarin</span><span class="nv"> </span><span class="s">SDK</span><span class="nv"> </span><span class="s">version'</span>
-</code></pre></div></div>
-
-<p>For more information visit <a href="https://go.microsoft.com/fwlink/?linkid=871629">https://go.microsoft.com/fwlink/?linkid=871629</a></p>
-
-  </div><!-- /.entry-content -->
-</article><!-- /.hentry -->
-
-
-
+  </div><!-- /.read-more-list -->
+</div><!-- /.read-more -->
+  </article>
 </div><!-- /#main -->
 
 <div class="footer-wrapper">
@@ -257,7 +227,7 @@ Basically, there’s a shells script on each macOS hosted VM, with which one can
 
 
 
-          
+	        
 
 </body>
 </html>
