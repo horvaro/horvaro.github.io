@@ -5,31 +5,31 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
 <head>
 <meta charset="utf-8">
-<title>Azure DevOps - Xamarin.iOS buildtool versions &#8211; Blog - Robert Horvath</title>
+<title>CentOS 7 - Install current (v 2.x) Git &#8211; Blog - Robert Horvath</title>
 <meta name="description" content="">
-<meta name="keywords" content="Azure Devops">
+<meta name="keywords" content="CentOS, Git">
 
 <!-- Twitter Cards -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://localhost:4000/images/abstract-5.jpg">
+<meta name="twitter:image" content="http://localhost:4000/images/abstract-10.jpg">
 
-<meta name="twitter:title" content="Azure DevOps - Xamarin.iOS buildtool versions">
+<meta name="twitter:title" content="CentOS 7 - Install current (v 2.x) Git">
 <meta name="twitter:description" content="">
 <meta name="twitter:creator" content="@naptic__">
 
 <!-- Open Graph -->
 <meta property="og:locale" content="en_US">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Azure DevOps - Xamarin.iOS buildtool versions">
+<meta property="og:title" content="CentOS 7 - Install current (v 2.x) Git">
 <meta property="og:description" content="">
-<meta property="og:url" content="http://localhost:4000/AzureDevOpsXamarin/">
+<meta property="og:url" content="http://localhost:4000/InstallCurrentGitOnCentos7/">
 <meta property="og:site_name" content="Blog - Robert Horvath">
 
 
 
 
 
-<link rel="canonical" href="http://localhost:4000/AzureDevOpsXamarin/">
+<link rel="canonical" href="http://localhost:4000/InstallCurrentGitOnCentos7/">
 <link href="http://localhost:4000/feed.xml" type="application/atom+xml" rel="alternate" title="Blog - Robert Horvath Feed">
 
 <!-- http://t.co/dKP3o1e -->
@@ -118,7 +118,7 @@
 <div class="entry-header">
   
   <div class="entry-image">
-    <img src="http://localhost:4000/images/abstract-5.jpg" alt="Azure DevOps - Xamarin.iOS buildtool versions">
+    <img src="http://localhost:4000/images/abstract-10.jpg" alt="CentOS 7 - Install current (v 2.x) Git">
   </div><!-- /.entry-image -->
 </div><!-- /.entry-header -->
 
@@ -128,9 +128,9 @@
     <header class="header-title">
       <div class="header-title-wrap">
         
-          <h1 class="entry-title"><a href="http://localhost:4000/AzureDevOpsXamarin/" rel="bookmark" title="Azure DevOps - Xamarin.iOS buildtool versions">Azure DevOps - Xamarin.iOS buildtool versions</a></h1>
+          <h1 class="entry-title"><a href="http://localhost:4000/InstallCurrentGitOnCentos7/" rel="bookmark" title="CentOS 7 - Install current (v 2.x) Git">CentOS 7 - Install current (v 2.x) Git</a></h1>
         
-        <h2><span class="entry-date date published"><time datetime="2019-06-27T00:00:00+00:00">June 27, 2019</time></span></h2>
+        <h2><span class="entry-date date published"><time datetime="2019-07-23T00:00:00+00:00">July 23, 2019</time></span></h2>
         
         <p class="entry-reading-time">
           <i class="fa fa-clock-o"></i>
@@ -141,20 +141,48 @@ Reading time ~1 minute
       </div><!-- /.header-title-wrap -->
     </header>
     <div class="entry-content">
-      <p>Xamarin.iOS task handles buildtool version a bit different, than other Azure DevOps Task.<br />
-Basically, there’s a shells script on each macOS hosted VM, with which one can select the build tool vesion.</p>
+      <p>Simply installing git via <code class="highlighter-rouge">yum install git</code> deploys an old version of git (v1.8) on your machine.
+This is clearly not very usefull. For most git based applications, like Bitbucket, we need a recent version of git.</p>
 
-<p>This example sets the Xamarin SDK Version (mono version resp.) to a given version:</p>
-<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">steps</span><span class="pi">:</span>
-<span class="pi">-</span> <span class="na">script</span><span class="pi">:</span> <span class="s">sudo $AGENT_HOMEDIRECTORY/scripts/select-xamarin-sdk.sh 5_18_1</span> 
-  <span class="na">displayName</span><span class="pi">:</span> <span class="s1">'</span><span class="s">Select</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">Xamarin</span><span class="nv"> </span><span class="s">SDK</span><span class="nv"> </span><span class="s">version'</span>
+<p>There exist two ways of doing this: Add a new rpm repository to the system which provides a recent git version or build git from source.
+Because I am not a friend of adding repositories to a system, just to simply install <em>one</em> package, we are going to built git from source.</p>
+
+<p>You can find the current releases on <a href="https://github.com/git/git/releases">GitHub</a></p>
+
+<p>We need to first install all dependencies for the build:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>yum groupinstall <span class="s2">"Development Tools"</span> <span class="nt">-y</span>
+<span class="nb">sudo </span>yum <span class="nb">install </span>wget perl-CPAN gettext-devel perl-devel openssl-devel zlib zlib-devel curl-devel expat-devel <span class="nt">-y</span>
 </code></pre></div></div>
 
-<p>For more information visit <a href="https://go.microsoft.com/fwlink/?linkid=871629">https://go.microsoft.com/fwlink/?linkid=871629</a></p>
+<p>The group “Development Tools” sadly contains the above mentioned old git. We need to remove it beforehand:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>yum remove git <span class="nt">-y</span>
+</code></pre></div></div>
+
+<p>Now we can download a specific version of git and extract the source files on our system:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">GITVER</span><span class="o">=</span><span class="s2">"2.22.0"</span>
+wget https://github.com/git/git/archive/v<span class="k">${</span><span class="nv">GITVER</span><span class="k">}</span>.tar.gz
+<span class="nb">tar</span> <span class="nt">-xvf</span> v<span class="k">${</span><span class="nv">GITVER</span><span class="k">}</span>.tar.gz
+<span class="nb">rm</span> <span class="nt">-f</span> v<span class="k">${</span><span class="nv">GITVER</span><span class="k">}</span>.tar.gz
+<span class="nb">cd </span>git-<span class="k">*</span>
+</code></pre></div></div>
+
+<p>Before we run the install process, some configuration needs to be done via <code class="highlighter-rouge">configure</code></p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>make clean
+<span class="nb">sudo </span>make configure
+./configure <span class="nt">--prefix</span><span class="o">=</span>/usr/local/git
+</code></pre></div></div>
+
+<p>Finally the install process can be started. After installation, we tidy a bit up:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>make <span class="nb">install
+cd</span> .. <span class="o">&amp;&amp;</span> <span class="nb">sudo rm</span> <span class="nt">-rf</span> git-<span class="k">*</span>
+<span class="nb">sudo </span>su <span class="nt">-c</span> <span class="s1">'echo "pathmunge /usr/local/git/bin" &gt; /etc/profile.d/git.sh'</span>
+<span class="nb">sudo </span>yum group remove <span class="s2">"Development Tools"</span> <span class="nt">-y</span>
+<span class="nb">sudo </span>yum remove perl-CPAN gettext-devel perl-devel openssl-devel zlib-devel curl-devel expat-devel <span class="nt">-y</span>
+</code></pre></div></div>
 
       <footer class="entry-meta">
-        <span class="entry-tags"><a href="http://localhost:4000/tags/#Azure Devops" title="Pages tagged Azure Devops" class="tag"><span class="term">Azure Devops</span></a></span>
-        <span>Updated on <span class="entry-date date updated"><time datetime="2019-06-27">June 27, 2019</time></span></span>
+        <span class="entry-tags"><a href="http://localhost:4000/tags/#CentOS" title="Pages tagged CentOS" class="tag"><span class="term">CentOS</span></a><a href="http://localhost:4000/tags/#Git" title="Pages tagged Git" class="tag"><span class="term">Git</span></a></span>
+        <span>Updated on <span class="entry-date date updated"><time datetime="2019-07-23">July 23, 2019</time></span></span>
         <span class="author vcard"><span class="fn">Robert Horvath</span></span>
         
       </footer>
@@ -163,18 +191,18 @@ Basically, there’s a shells script on each macOS hosted VM, with which one can
     <div class="read-more">
   
     <div class="read-more-header">
-      <a href="http://localhost:4000" class="read-more-btn">Read More</a>
+      <a href="http://localhost:4000/PythonHeadlessBrowserMechanize/" class="read-more-btn">Read More</a>
     </div><!-- /.read-more-header -->
     <div class="read-more-content">
-      <h3><a href="http://localhost:4000/InstallCurrentGitOnCentos7/" title="CentOS 7 - Install current (v 2.x) Git">CentOS 7 - Install current (v 2.x) Git</a></h3>
-      <p> <a href="http://localhost:4000/InstallCurrentGitOnCentos7/">Continue reading</a></p>
+      <h3><a href="http://localhost:4000/PythonHeadlessBrowserMechanize/" title="Python - Headless Browser (Mechanize)">Python - Headless Browser (Mechanize)</a></h3>
+      <p> <a href="http://localhost:4000/PythonHeadlessBrowserMechanize/">Continue reading</a></p>
     </div><!-- /.read-more-content -->
   
   <div class="read-more-list">
     
       <div class="list-item">
-        <h4><a href="http://localhost:4000/PythonHeadlessBrowserMechanize/" title="Python - Headless Browser (Mechanize)">Python - Headless Browser (Mechanize)</a></h4>
-        <span>Published on July 17, 2019</span>
+        <h4><a href="http://localhost:4000/AzureDevOpsXamarin/" title="Azure DevOps - Xamarin.iOS buildtool versions">Azure DevOps - Xamarin.iOS buildtool versions</a></h4>
+        <span>Published on June 27, 2019</span>
       </div><!-- /.list-item -->
     
   </div><!-- /.read-more-list -->

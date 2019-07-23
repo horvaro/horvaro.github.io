@@ -1,4 +1,41 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-07-17T06:44:02+00:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Blog - Robert Horvath</title><subtitle>Blog für dies und das</subtitle><entry><title type="html">Python - Headless Browser (Mechanize)</title><link href="http://localhost:4000/PythonHeadlessBrowserMechanize/" rel="alternate" type="text/html" title="Python - Headless Browser (Mechanize)" /><published>2019-07-17T00:00:00+00:00</published><updated>2019-07-17T00:00:00+00:00</updated><id>http://localhost:4000/PythonHeadlessBrowserMechanize</id><content type="html" xml:base="http://localhost:4000/PythonHeadlessBrowserMechanize/">&lt;p&gt;Sometimes you need to automatically fill HTML forms in an automated pipeline (e.g. Installation of application, etc.).
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-07-23T13:16:10+00:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Blog - Robert Horvath</title><subtitle>Blog für dies und das</subtitle><entry><title type="html">CentOS 7 - Install current (v 2.x) Git</title><link href="http://localhost:4000/InstallCurrentGitOnCentos7/" rel="alternate" type="text/html" title="CentOS 7 - Install current (v 2.x) Git" /><published>2019-07-23T00:00:00+00:00</published><updated>2019-07-23T00:00:00+00:00</updated><id>http://localhost:4000/InstallCurrentGitOnCentos7</id><content type="html" xml:base="http://localhost:4000/InstallCurrentGitOnCentos7/">&lt;p&gt;Simply installing git via &lt;code class=&quot;highlighter-rouge&quot;&gt;yum install git&lt;/code&gt; deploys an old version of git (v1.8) on your machine.
+This is clearly not very usefull. For most git based applications, like Bitbucket, we need a recent version of git.&lt;/p&gt;
+
+&lt;p&gt;There exist two ways of doing this: Add a new rpm repository to the system which provides a recent git version or build git from source.
+Because I am not a friend of adding repositories to a system, just to simply install &lt;em&gt;one&lt;/em&gt; package, we are going to built git from source.&lt;/p&gt;
+
+&lt;p&gt;You can find the current releases on &lt;a href=&quot;https://github.com/git/git/releases&quot;&gt;GitHub&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;We need to first install all dependencies for the build:&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;yum groupinstall &lt;span class=&quot;s2&quot;&gt;&quot;Development Tools&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-y&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;yum &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;wget perl-CPAN gettext-devel perl-devel openssl-devel zlib zlib-devel curl-devel expat-devel &lt;span class=&quot;nt&quot;&gt;-y&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The group “Development Tools” sadly contains the above mentioned old git. We need to remove it beforehand:&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;yum remove git &lt;span class=&quot;nt&quot;&gt;-y&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Now we can download a specific version of git and extract the source files on our system:&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;GITVER&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;2.22.0&quot;&lt;/span&gt;
+wget https://github.com/git/git/archive/v&lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;GITVER&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;.tar.gz
+&lt;span class=&quot;nb&quot;&gt;tar&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-xvf&lt;/span&gt; v&lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;GITVER&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;.tar.gz
+&lt;span class=&quot;nb&quot;&gt;rm&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-f&lt;/span&gt; v&lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;GITVER&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;.tar.gz
+&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;git-&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Before we run the install process, some configuration needs to be done via &lt;code class=&quot;highlighter-rouge&quot;&gt;configure&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;make clean
+&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;make configure
+./configure &lt;span class=&quot;nt&quot;&gt;--prefix&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/usr/local/git
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Finally the install process can be started. After installation, we tidy a bit up:&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;make &lt;span class=&quot;nb&quot;&gt;install
+cd&lt;/span&gt; .. &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;sudo rm&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-rf&lt;/span&gt; git-&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;su &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'echo &quot;pathmunge /usr/local/git/bin&quot; &amp;gt; /etc/profile.d/git.sh'&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;yum group remove &lt;span class=&quot;s2&quot;&gt;&quot;Development Tools&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-y&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;yum remove perl-CPAN gettext-devel perl-devel openssl-devel zlib-devel curl-devel expat-devel &lt;span class=&quot;nt&quot;&gt;-y&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name></name></author><category term="CentOS" /><category term="Git" /><summary type="html">Simply installing git via yum install git deploys an old version of git (v1.8) on your machine. This is clearly not very usefull. For most git based applications, like Bitbucket, we need a recent version of git.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/images/abstract-10.jpg" /></entry><entry><title type="html">Python - Headless Browser (Mechanize)</title><link href="http://localhost:4000/PythonHeadlessBrowserMechanize/" rel="alternate" type="text/html" title="Python - Headless Browser (Mechanize)" /><published>2019-07-17T00:00:00+00:00</published><updated>2019-07-17T00:00:00+00:00</updated><id>http://localhost:4000/PythonHeadlessBrowserMechanize</id><content type="html" xml:base="http://localhost:4000/PythonHeadlessBrowserMechanize/">&lt;p&gt;Sometimes you need to automatically fill HTML forms in an automated pipeline (e.g. Installation of application, etc.).
 One could use UI-Test automating frameworks like Selenium, but all of those need some kind of running Browser with which they can interact with.
 This apprioach does not work on servers, where only a text-based interface is available.&lt;/p&gt;
 

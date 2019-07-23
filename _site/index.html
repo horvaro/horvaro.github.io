@@ -135,6 +135,70 @@
   <header>
     
       <div class="entry-image-index">
+        <a href="http://localhost:4000/InstallCurrentGitOnCentos7/" title="CentOS 7 - Install current (v 2.x) Git"><img src="http://localhost:4000/images/abstract-10.jpg" alt="CentOS 7 - Install current (v 2.x) Git"></a>
+      </div><!-- /.entry-image -->
+    
+    <div class="entry-meta">
+      <span class="entry-date date published updated"><time datetime="2019-07-23T00:00:00+00:00"><a href="http://localhost:4000/InstallCurrentGitOnCentos7/">July 23, 2019</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Robert Horvath">Robert Horvath</a></span></span>
+      
+      <span class="entry-reading-time">
+        <i class="fa fa-clock-o"></i>
+        
+Reading time ~1 minute
+      </span><!-- /.entry-reading-time -->
+      
+    </div><!-- /.entry-meta -->
+    
+      <h1 class="entry-title"><a href="http://localhost:4000/InstallCurrentGitOnCentos7/" rel="bookmark" title="CentOS 7 - Install current (v 2.x) Git" itemprop="url">CentOS 7 - Install current (v 2.x) Git</a></h1>
+    
+  </header>
+  <div class="entry-content">
+    <p>Simply installing git via <code class="highlighter-rouge">yum install git</code> deploys an old version of git (v1.8) on your machine.
+This is clearly not very usefull. For most git based applications, like Bitbucket, we need a recent version of git.</p>
+
+<p>There exist two ways of doing this: Add a new rpm repository to the system which provides a recent git version or build git from source.
+Because I am not a friend of adding repositories to a system, just to simply install <em>one</em> package, we are going to built git from source.</p>
+
+<p>You can find the current releases on <a href="https://github.com/git/git/releases">GitHub</a></p>
+
+<p>We need to first install all dependencies for the build:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>yum groupinstall <span class="s2">"Development Tools"</span> <span class="nt">-y</span>
+<span class="nb">sudo </span>yum <span class="nb">install </span>wget perl-CPAN gettext-devel perl-devel openssl-devel zlib zlib-devel curl-devel expat-devel <span class="nt">-y</span>
+</code></pre></div></div>
+
+<p>The group “Development Tools” sadly contains the above mentioned old git. We need to remove it beforehand:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>yum remove git <span class="nt">-y</span>
+</code></pre></div></div>
+
+<p>Now we can download a specific version of git and extract the source files on our system:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">GITVER</span><span class="o">=</span><span class="s2">"2.22.0"</span>
+wget https://github.com/git/git/archive/v<span class="k">${</span><span class="nv">GITVER</span><span class="k">}</span>.tar.gz
+<span class="nb">tar</span> <span class="nt">-xvf</span> v<span class="k">${</span><span class="nv">GITVER</span><span class="k">}</span>.tar.gz
+<span class="nb">rm</span> <span class="nt">-f</span> v<span class="k">${</span><span class="nv">GITVER</span><span class="k">}</span>.tar.gz
+<span class="nb">cd </span>git-<span class="k">*</span>
+</code></pre></div></div>
+
+<p>Before we run the install process, some configuration needs to be done via <code class="highlighter-rouge">configure</code></p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>make clean
+<span class="nb">sudo </span>make configure
+./configure <span class="nt">--prefix</span><span class="o">=</span>/usr/local/git
+</code></pre></div></div>
+
+<p>Finally the install process can be started. After installation, we tidy a bit up:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>make <span class="nb">install
+cd</span> .. <span class="o">&amp;&amp;</span> <span class="nb">sudo rm</span> <span class="nt">-rf</span> git-<span class="k">*</span>
+<span class="nb">sudo </span>su <span class="nt">-c</span> <span class="s1">'echo "pathmunge /usr/local/git/bin" &gt; /etc/profile.d/git.sh'</span>
+<span class="nb">sudo </span>yum group remove <span class="s2">"Development Tools"</span> <span class="nt">-y</span>
+<span class="nb">sudo </span>yum remove perl-CPAN gettext-devel perl-devel openssl-devel zlib-devel curl-devel expat-devel <span class="nt">-y</span>
+</code></pre></div></div>
+
+  </div><!-- /.entry-content -->
+</article><!-- /.hentry -->
+
+<article class="hentry">
+  <header>
+    
+      <div class="entry-image-index">
         <a href="http://localhost:4000/PythonHeadlessBrowserMechanize/" title="Python - Headless Browser (Mechanize)"><img src="http://localhost:4000/images/abstract-2.jpg" alt="Python - Headless Browser (Mechanize)"></a>
       </div><!-- /.entry-image -->
     
